@@ -5,6 +5,7 @@ import Dashboard from './admin/dashboard/Dashboard';
 import NoPage from './nopage/NoPage';
 import Signup from './authentication/Signup';
 import Login from './authentication/Login';
+import ProductInfo from './productInfo/ProductInfo';
 
 export{
     Home,
@@ -14,4 +15,5 @@ export{
     NoPage,
     Signup,
     Login,
+    ProductInfo,
 }
