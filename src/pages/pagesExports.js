@@ -3,6 +3,8 @@ import Order from './order/Order';
 import Cart from './cart/Cart';
 import Dashboard from './admin/dashboard/Dashboard';
 import NoPage from './nopage/NoPage';
+import Signup from './authentication/Signup';
+import Login from './authentication/Login';
 
 export{
     Home,
@@ -10,4 +12,6 @@ export{
     Cart,
     Dashboard,
     NoPage,
+    Signup,
+    Login,
 }

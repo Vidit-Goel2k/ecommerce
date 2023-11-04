@@ -90,7 +90,7 @@ const Navbar = () => {
                         (<FiSun className='' size={30} />
                         ) : mode === 'dark' ?
                           (<BsFillCloudSunFill size={30} />
-                        ) : null}
+                        ) : ''}
                     </button>
                   </div>
 
