@@ -5,10 +5,97 @@ import Modal from "../../components/modal/Modal";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteFromCart } from "../../redux/cartSlice";
 import { toast } from "react-toastify";
+import { addDoc, collection } from 'firebase/firestore';
+import { fireDb } from '../../firebase/firebaseConfig'
 
 const Cart = () => {
+  // razorpay integration
+  const [name, setName] = useState('')
+  const [address, setAddress] = useState('')
+  const [pincode, setPincode] = useState('')
+  const [phoneNumber, setPhoneNumber] = useState('')
+
+  const buyNow = async () => {
+    // validation
+    if(name === "" || address == "" || pincode == "" || phoneNumber == "") {
+      return toast.error("All fields are required", {
+        position: "top-center",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      })
+    }
+    const addressInfo = {
+      name, 
+      address,
+      pincode,
+      phoneNumber,
+      date: new Date().toLocaleString(
+        "en-US",
+        {
+          month: "short",
+          day: "2-digit",
+          year: "numeric",
+        }
+      )
+    }
+    console.log(addressInfo)
+
+    var options = {
+      key: import.meta.env.VITE_RAZORPAY_ID,
+      key_secret: import.meta.env.VITE_RAZORPAY_KEY,
+      amount: parseInt(grandTotal * 100),
+      currency: "INR",
+      order_receipt: 'order_rcptid_' + name,
+      name: "E-Bharat",
+      description: "for testing purpose",
+      handler: function (response) {
+
+        // console.log(response)
+        toast.success('Payment Successful')
+
+        const paymentId = response.razorpay_payment_id
+        // store in firebase 
+        const orderInfo = {
+          cartItems,
+          addressInfo,
+          date: new Date().toLocaleString(
+            "en-US",
+            {
+              month: "short",
+              day: "2-digit",
+              year: "numeric",
+            }
+          ),
+          email: JSON.parse(localStorage.getItem("user")).user.email,
+          userid: JSON.parse(localStorage.getItem("user")).user.uid,
+          paymentId
+        }
+
+        try {
+          const result = addDoc(collection(fireDb, "orders"), orderInfo)
+        } catch (error) {
+          console.log(error)
+        }
+      },
+
+      theme: {
+        color: "#3399cc"
+      }
+    };
+    var pay = new window.Razorpay(options);
+    pay.open();
+    console.log(pay)
+  }
+
+  // add and delete cart 
   const context = useContext(myContext);
   const { mode } = context;
+
 
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart);
@@ -21,6 +108,7 @@ const Cart = () => {
       temp = temp + parseInt(cartItem.price);
     });
     setTotalAmount(temp);
+    localStorage.setItem("cart", JSON.stringify(cartItems));
   }, [cartItems]);
 
   const shipping = parseInt(100);
@@ -30,10 +118,6 @@ const Cart = () => {
     dispatch(deleteFromCart(item));
     toast.success("Deleted Successfully");
   };
-
-  useEffect(() => {
-    localStorage.setItem("cart", JSON.stringify(cartItems));
-  }, [cartItems]);
 
   return (
     <Layout>
@@ -122,7 +206,17 @@ const Cart = () => {
               </div>
             </div>
             {/* <Modal  /> */}
-            <Modal />
+            <Modal 
+              name={name} 
+              address={address} 
+              pincode={pincode} 
+              phoneNumber={phoneNumber} 
+              setName={setName} 
+              setAddress={setAddress} 
+              setPincode={setPincode} 
+              setPhoneNumber={setPhoneNumber} 
+              buyNow={buyNow} 
+            />
           </div>
         </div>
       </div>
