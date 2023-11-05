@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
-import { AddProduct, Cart, Dashboard, Home, Login, NoPage, Order, ProductInfo, Signup, UpdateProduct } from './pages/pagesExports'
+import { AddProduct, AllProducts, Cart, Dashboard, Home, Login, NoPage, Order, ProductInfo, Signup, UpdateProduct } from './pages/pagesExports'
 import MyState from './context/data/MyState'
 
 
@@ -50,6 +50,9 @@ const App = () => {
               } 
             />
             <Route path="/cart" element={<Cart />} />
+
+            <Route path="/allproducts" element={<AllProducts />} />
+            
             <Route path="/*" element={<NoPage />} />
           </Routes>
         </Router>
@@ -62,7 +65,7 @@ export default App
 
 // user
 export const ProtectedRouteForUser = ({ children }) => {
-  if (localStorage.getItem('currentUser')) {
+  if (localStorage.getItem('user')) {
     return children
   }
   else {

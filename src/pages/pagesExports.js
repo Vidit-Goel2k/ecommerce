@@ -8,6 +8,7 @@ import Login from './authentication/Login';
 import ProductInfo from './productInfo/ProductInfo';
 import AddProduct from './admin/adminPages/AddProduct';
 import UpdateProduct from './admin/adminPages/UpdateProduct';
+import AllProducts from './allProducts/AllProducts';
 
 export{
     Home,
@@ -20,4 +21,5 @@ export{
     ProductInfo,
     AddProduct,
     UpdateProduct,
+    AllProducts,
 }

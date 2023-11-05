@@ -22,30 +22,33 @@ const Signup = () => {
             return toast.error("All fields are required")
         }
 
-        try{
-            const users = await createUserWithEmailAndPassword(auth, email, password)
-            
-            const user = {
+        try {
+            const users = await createUserWithEmailAndPassword(auth, email, password);
+          
+            if (users && users.user && users.user.id) {
+              const user = {
                 name: name,
                 uid: users.user.id,
                 email: users.user.email,
                 time: Timestamp.now()
+              };
+          
+              const userRef = collection(fireDb, "users");
+              await addDoc(userRef, user);
+              toast.success("Signup Successful");
+          
+              setName("");
+              setEmail("");
+              setPassword("");
+            } else {
+              toast.error("User creation failed"); // Handle the case where user creation didn't provide a valid UID.
             }
-            
-            const userRef = collection(fireDb, "users")
-            await addDoc(userRef, user)
-            toast.success("Signup Succesfull")
-            
-            setName("")
-            setEmail("")
-            setPassword("")
-        }
-        catch(err){
-            console.log(err)
-        }
-        finally{
-            setLoading(false)
-        }
+          } catch (err) {
+            console.error(err);
+          } finally {
+            setLoading(false);
+          }
+          
 
     }
 
