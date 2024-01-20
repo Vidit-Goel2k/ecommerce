@@ -7,7 +7,7 @@ export default defineConfig({
   build: {
     // Remove 'context/data/MyState' from the external array
     rollupOptions: {
-      external: [], // If 'context/data/MyState' is not an external module
+      external: ['context/data/MyState'], // If 'context/data/MyState' is not an external module
     },
   },
 })
