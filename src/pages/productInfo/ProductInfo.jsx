@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { doc, getDoc } from "firebase/firestore";
 import { toast } from "react-toastify";
 import { addToCart } from "../../redux/cartSlice";
-import { fireDb } from "../../firebase/FirebaseConfig";
+import { fireDb } from "../../firebase/firebaseConfig";
 
 function ProductInfo() {
   const context = useContext(myContext);
@@ -50,20 +50,20 @@ function ProductInfo() {
 
   return (
     <Layout>
-      <section className="text-gray-600 body-font overflow-hidden">
+      <section className="overflow-hidden text-gray-600 body-font">
         <div className="container px-5 py-10 mx-auto">
           {products && (
-            <div className="lg:w-4/5 mx-auto flex flex-wrap">
+            <div className="flex flex-wrap mx-auto lg:w-4/5">
               <img
                 alt="ecommerce"
-                className="lg:w-1/3 w-full lg:h-auto  object-cover object-center rounded"
+                className="object-cover object-center w-full rounded lg:w-1/3 lg:h-auto"
                 src={products.imageUrl}
               />
-              <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
-                <h2 className="text-sm title-font text-gray-500 tracking-widest">
+              <div className="w-full mt-6 lg:w-1/2 lg:pl-10 lg:py-6 lg:mt-0">
+                <h2 className="text-sm tracking-widest text-gray-500 title-font">
                   BRAND NAME
                 </h2>
-                <h1 className="text-gray-900 text-3xl title-font font-medium mb-1">
+                <h1 className="mb-1 text-3xl font-medium text-gray-900 title-font">
                   {products.title}
                 </h1>
                 <div className="flex mb-4">
@@ -123,9 +123,9 @@ function ProductInfo() {
                     >
                       <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
                     </svg>
-                    <span className="text-gray-600 ml-3">4 Reviews</span>
+                    <span className="ml-3 text-gray-600">4 Reviews</span>
                   </span>
-                  <span className="flex ml-3 pl-3 py-2 border-l-2 border-gray-200 space-x-2s">
+                  <span className="flex py-2 pl-3 ml-3 border-l-2 border-gray-200 space-x-2s">
                     <a className="text-gray-500">
                       <svg
                         fill="currentColor"
@@ -164,21 +164,21 @@ function ProductInfo() {
                     </a>
                   </span>
                 </div>
-                <p className="leading-relaxed border-b-2 mb-5 pb-5">
+                <p className="pb-5 mb-5 leading-relaxed border-b-2">
                   {products.description}
                 </p>
 
                 <div className="flex">
-                  <span className="title-font font-medium text-2xl text-gray-900">
+                  <span className="text-2xl font-medium text-gray-900 title-font">
                     ₹{products.price}
                   </span>
                   <button
                     onClick={() => addCart(products)}
-                    className="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded"
+                    className="flex px-6 py-2 ml-auto text-white bg-indigo-500 border-0 rounded focus:outline-none hover:bg-indigo-600"
                   >
                     Add To Cart
                   </button>
-                  <button className="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4">
+                  <button className="inline-flex items-center justify-center w-10 h-10 p-0 ml-4 text-gray-500 bg-gray-200 border-0 rounded-full">
                     <svg
                       fill="currentColor"
                       strokeLinecap="round"
