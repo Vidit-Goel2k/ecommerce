@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 
-import myContext from "./../../context/data/myContext";
+import myContext from "../../context/myContext";
 
 
 const Footer = () => {

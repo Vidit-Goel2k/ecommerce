@@ -1,5 +1,5 @@
 import { Fragment, useContext, useState } from "react"
-import myContext from "../../context/data/myContext"
+import myContext from "../../context/myContext"
 import { Link } from "react-router-dom"
 
 import { Dialog, Transition } from '@headlessui/react'

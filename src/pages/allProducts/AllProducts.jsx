@@ -1,7 +1,7 @@
 import { useContext, useEffect } from "react";
 import Filter from "../../components/filter/Filter";
 import Layout from "../../components/layout/Layout";
-import myContext from "../../context/data/myContext";
+import myContext from "../../context/myContext";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../redux/cartSlice";
 import { toast } from "react-toastify";

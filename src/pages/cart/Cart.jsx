@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import myContext from "./../../context/data/myContext";
+import myContext from "../../context/myContext";
 import Layout from "./../../components/layout/Layout";
 import Modal from "../../components/modal/Modal";
 import { useDispatch, useSelector } from "react-redux";

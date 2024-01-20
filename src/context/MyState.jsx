@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import myContext from "./myContext";
 import { Timestamp, addDoc, collection, deleteDoc, onSnapshot, orderBy, query, setDoc, doc, getDocs } from 'firebase/firestore';
 import { toast } from "react-toastify";
-import { fireDb } from '../../firebase/firebaseConfig';
+import { fireDb } from '../firebase/firebaseConfig';
 
 const MyState = (props) => {
 

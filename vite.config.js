@@ -5,9 +5,9 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   build: {
-    // Remove 'context/data/MyState' from the external array
+    // Remove 'context/MyState' from the external array
     rollupOptions: {
-      external: ['context/data/MyState'], // If 'context/data/MyState' is not an external module
+      external: [], // If 'context/MyState' is not an external module
     },
   },
 })
