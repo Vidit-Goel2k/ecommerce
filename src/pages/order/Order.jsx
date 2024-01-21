@@ -12,17 +12,17 @@ function Order() {
       {loading && <Loader />}
       {order.length > 0 ?
         (<>
-          <div className=" h-full pt-10">
+          <div className="h-full pt-10 ">
             {
               order.filter(obj => obj.userid == userid).map((order) => {
                 // order.cartItems.map()
                 return (
-                  <div className="mx-auto max-w-5xl justify-center px-6 md:flex md:space-x-6 xl:px-0" key={order.id}>
+                  <div className="justify-center max-w-5xl px-6 mx-auto md:flex md:space-x-6 xl:px-0" key={order.id}>
                     {
                       order.cartItems.map((item) => {
                         return (
                           <div className="rounded-lg md:w-2/3" key={item.title}> 
-                            <div className="justify-between mb-6 rounded-lg bg-white p-6 shadow-md sm:flex sm:justify-start" style={{ backgroundColor: mode === 'dark' ? '#282c34' : '', color: mode === 'dark' ? 'white' : '', }}>
+                            <div className="justify-between p-6 mb-6 bg-white rounded-lg shadow-md sm:flex sm:justify-start" style={{ backgroundColor: mode === 'dark' ? '#282c34' : '', color: mode === 'dark' ? 'white' : '', }}>
                               <img src={item.imageUrl} alt="product-image" className="w-full rounded-lg sm:w-40" />
                               <div className="sm:ml-4 sm:flex sm:w-full sm:justify-between">
                                 <div className="mt-5 sm:mt-0">
@@ -44,7 +44,7 @@ function Order() {
         </>)
         :
         (
-          <h2 className=' text-center tex-2xl text-white'>No Orders</h2>
+          <h2 className='text-center text-white tex-2xl'>No Orders</h2>
         )
 
       }

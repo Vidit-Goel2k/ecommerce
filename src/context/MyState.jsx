@@ -92,7 +92,7 @@ const MyState = (props) => {
     setProducts(item)
   }
   // update product
-  const updateProduct = async (item) => {
+  const updateProduct = async () => {
     setLoading(true)
     try {
       await setDoc(doc(fireDb, "products", products.id), products);
@@ -152,6 +152,7 @@ const MyState = (props) => {
       const result = await getDocs(collection(fireDb, "users"))
       const usersArray = [];
       result.forEach((doc) => {
+        console.log("doc")
         usersArray.push(doc.data());
         setLoading(false)
       });
