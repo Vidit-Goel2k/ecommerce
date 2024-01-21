@@ -18,7 +18,11 @@ const App = () => {
                 </ProtectedRouteForUser>
               } 
             />
-            <Route path="/cart" element={<Cart />} />
+            <Route path="/cart" element={
+              <ProtectedRouteForUser>
+                <Cart />
+              </ProtectedRouteForUser>
+            } />
             <Route 
               path="/dashboard" 
               element={
